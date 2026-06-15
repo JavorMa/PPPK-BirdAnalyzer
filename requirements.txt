@@ -1,0 +1,8 @@
+pymongo==4.7.2
+minio==7.2.7
+kafka-python==2.0.2
+requests==2.32.3
+snakemake==8.20.3
+pyyaml==6.0.2
+thefuzz==0.22.1
+pandas==2.2.2

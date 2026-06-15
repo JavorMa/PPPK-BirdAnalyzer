@@ -1,0 +1,27 @@
+mongodb:
+  uri: "mongodb://localhost:27017"
+  database: "bird_pipeline"
+
+minio:
+  endpoint: "localhost:9001"
+  access_key: "pppk_user"
+  secret_key: "pppk_pass"
+  bucket: "bird-audio"
+  secure: false
+
+kafka:
+  bootstrap_servers: "localhost:9092"
+  topic: "bird-observations"
+  group_id: "bird-pipeline"
+
+aves_api:
+  base_url: "https://aves.regoch.net"
+  classify_url: "https://aves.regoch.net/api/classify"
+
+audio:
+  local_dir: "audio"
+
+output:
+  csv_path: "output/report.csv"
+
+species_filter: ""
