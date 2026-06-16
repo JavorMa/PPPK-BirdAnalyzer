@@ -1,0 +1,85 @@
+host: Javor
+Building DAG of jobs...
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+consume_kafka          1
+fetch_taxonomy         1
+generate_report        1
+process_audio          1
+total                  5
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:02:56 2026]
+localrule consume_kafka:
+    output: output/.kafka_done
+    jobid: 4
+    reason: Missing output files: output/.kafka_done
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+Touching output file output/.kafka_done.
+[Tue Jun 16 19:03:00 2026]
+Finished job 4.
+1 of 5 steps (20%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:03:00 2026]
+localrule fetch_taxonomy:
+    output: output/.taxonomy_done
+    jobid: 3
+    reason: Missing output files: output/.taxonomy_done
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+Touching output file output/.taxonomy_done.
+[Tue Jun 16 19:03:02 2026]
+Finished job 3.
+2 of 5 steps (40%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:03:02 2026]
+localrule process_audio:
+    input: output/.taxonomy_done
+    output: output/.audio_done
+    jobid: 2
+    reason: Missing output files: output/.audio_done; Input files updated by another job: output/.taxonomy_done
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+Touching output file output/.audio_done.
+[Tue Jun 16 19:03:17 2026]
+Finished job 2.
+3 of 5 steps (60%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:03:17 2026]
+localrule generate_report:
+    input: output/.audio_done, output/.kafka_done
+    output: output/report.csv, output/report_summary.csv
+    jobid: 1
+    reason: Missing output files: output/report.csv, output/report_summary.csv; Input files updated by another job: output/.kafka_done, output/.audio_done
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+[Tue Jun 16 19:03:18 2026]
+Finished job 1.
+4 of 5 steps (80%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:03:18 2026]
+localrule all:
+    input: output/report.csv, output/report_summary.csv
+    jobid: 0
+    reason: Input files updated by another job: output/report.csv, output/report_summary.csv
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+[Tue Jun 16 19:03:18 2026]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: .snakemake\log\2026-06-16T190255.954672.snakemake.log

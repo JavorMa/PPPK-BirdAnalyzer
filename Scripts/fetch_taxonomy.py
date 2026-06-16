@@ -1,10 +1,8 @@
 import requests
-import yaml
 from pymongo import MongoClient
+from pymongo.errors import DuplicateKeyError
+from utils import load_config
 
-def load_config():
-    with open("config.yaml") as f:
-        return yaml.safe_load(f)
 
 def fetch_all_species(base_url: str) -> list[dict]:
     print("  Dohvaćam aves.json...")
@@ -14,23 +12,22 @@ def fetch_all_species(base_url: str) -> list[dict]:
     print(f"  Ukupno vrsta u JSON-u: {len(data)}")
     return data
 
+
 def save_to_mongo(species: list[dict], mongo_uri: str, db_name: str):
-    client = MongoClient(mongo_uri)
-    collection = client[db_name]["species"]
+    with MongoClient(mongo_uri) as client:
+        collection = client[db_name]["species"]
+        collection.create_index("key", unique=True)
 
-    # Unique index na 'key' polju da spriječimo duplikate
-    collection.create_index("key", unique=True)
+        inserted = skipped = 0
+        for s in species:
+            try:
+                collection.insert_one(s)
+                inserted += 1
+            except DuplicateKeyError:
+                skipped += 1
 
-    inserted = skipped = 0
-    for s in species:
-        try:
-            collection.insert_one(s)
-            inserted += 1
-        except Exception:
-            skipped += 1
+        print(f"  Umetnutno: {inserted}, preskočeno (duplikati): {skipped}")
 
-    print(f"  Umetnutno: {inserted}, preskočeno (duplikati): {skipped}")
-    client.close()
 
 if __name__ == "__main__":
     config = load_config()

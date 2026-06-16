@@ -1,13 +1,8 @@
 import sys
-import yaml
 import pandas as pd
 from pymongo import MongoClient
 from thefuzz import fuzz
-
-
-def load_config():
-    with open("config.yaml") as f:
-        return yaml.safe_load(f)
+from utils import load_config
 
 
 def get_species_filter() -> str | None:
@@ -25,11 +20,11 @@ def load_classifications(db) -> list[dict]:
 
 
 def load_species_map(db) -> dict:
-    """Gradi rječnik taxonKey → species info iz MongoDB."""
+    """Gradi rječnik canonicalName → species info iz MongoDB."""
     return {
-        str(s.get("key")): s
+        s.get("canonicalName", ""): s
         for s in db["species"].find()
-        if s.get("key")
+        if s.get("canonicalName")
     }
 
 
@@ -58,7 +53,7 @@ def build_rows(classifications: list[dict], species_map: dict,
                     continue
 
             # Dohvati taksonomske podatke iz MongoDB
-            species_info = species_map.get(str(result.get("taxonKey", "")), {})
+            species_info = species_map.get(scientific_name, {})
 
             rows.append({
                 "scientific_name": scientific_name,
@@ -117,12 +112,10 @@ if __name__ == "__main__":
     if species_filter:
         print(f"  Fuzzy filter: '{species_filter}'")
 
-    client = MongoClient(config["mongodb"]["uri"])
-    db     = client[config["mongodb"]["database"]]
-
-    classifications = load_classifications(db)
-    species_map     = load_species_map(db)
-    client.close()
+    with MongoClient(config["mongodb"]["uri"]) as client:
+        db              = client[config["mongodb"]["database"]]
+        classifications = load_classifications(db)
+        species_map     = load_species_map(db)
 
     print(f"  Pronađeno {len(classifications)} klasifikacija s rezultatima.")
 

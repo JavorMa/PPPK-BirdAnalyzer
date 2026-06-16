@@ -1,2 +1,13 @@
 scientific_name,common_name,family,order,num_classifications,avg_confidence,max_confidence
+Grallaria rufula,Muisca Antpitta,,,6,0.2148,0.4151
+Tinamus major,Great Tinamou,,,3,0.2817,0.3971
+Henicorhina anachoreta,Hermit Wood-Wren,,,2,0.2024,0.3037
+Arborophila rufogularis,Rufous-throated Partridge,Phasianidae,Galliformes,1,0.1145,0.1145
+Crypturellus strigulosus,Brazilian Tinamou,,,1,0.1774,0.1774
+Coccothraustes coccothraustes,Hawfinch,,,1,0.11,0.11
+Chroicocephalus ridibundus,Black-headed Gull,,,1,0.9062,0.9062
+Erithacus rubecula,European Robin,,,1,0.3613,0.3613
+Crypturellus variegatus,Variegated Tinamou,,,1,0.1785,0.1785
 Melanerpes uropygialis,Gila Woodpecker,,,1,0.7929,0.7929
+Toxostoma rufum,Brown Thrasher,,,1,0.7751,0.7751
+Tyrannus tyrannus,Eastern Kingbird,,,1,0.1433,0.1433

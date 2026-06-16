@@ -1,0 +1,37 @@
+host: Javor
+Building DAG of jobs...
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+consume_kafka          1
+fetch_taxonomy         1
+generate_report        1
+process_audio          1
+total                  5
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Tue Jun 16 19:01:32 2026]
+localrule consume_kafka:
+    output: output/.kafka_done
+    jobid: 4
+    reason: Missing output files: output/.kafka_done
+    resources: tmpdir=C:\Users\Matija\AppData\Local\Temp
+
+RuleException:
+CalledProcessError in file C:\Users\Matija\Desktop\PPPK projekt\BirdAnalyzer\Snakefile, line 20:
+Command 'C:/Users/Matija/AppData/Local/Programs/Python/Python313/python.exe "C:\Users\Matija\Desktop\PPPK projekt\BirdAnalyzer\.snakemake\scripts\tmp8ck93hf9.kafka_consumer.py"' returned non-zero exit status 1.
+[Tue Jun 16 19:01:36 2026]
+Error in rule consume_kafka:
+    jobid: 4
+    output: output/.kafka_done
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake\log\2026-06-16T190131.847804.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

@@ -1,2 +1,21 @@
 scientific_name,common_name,confidence,start_time,end_time,latitude,longitude,filename,family,order,kingdom,confidence_pct
+Chroicocephalus ridibundus,Black-headed Gull,0.9062,3.0,6.0,45.815,15.9819,XC1146016 - Black-headed Gull - Chroicocephalus ridibundus.wav,,,,90.62
 Melanerpes uropygialis,Gila Woodpecker,0.7929,0.0,3.0,45.815,15.9819,XC1145764 - Gila Woodpecker - Melanerpes uropygialis.mp3,,,,79.29
+Toxostoma rufum,Brown Thrasher,0.7751,0.0,3.0,45.815,15.9819,XC1145792 - Buff-vented Bulbul - Iole crypta.mp3,,,,77.51
+Grallaria rufula,Muisca Antpitta,0.4151,12.0,15.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,41.51
+Tinamus major,Great Tinamou,0.3971,6.0,9.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,,,,39.71
+Erithacus rubecula,European Robin,0.3613,3.0,6.0,45.815,15.9819,XC1145786 - Hawfinch - Coccothraustes coccothraustes japonicus.mp3,,,,36.13
+Tinamus major,Great Tinamou,0.3409,3.0,6.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,,,,34.09
+Henicorhina anachoreta,Hermit Wood-Wren,0.3037,6.0,9.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,30.37
+Grallaria rufula,Muisca Antpitta,0.2141,9.0,12.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,21.41
+Grallaria rufula,Muisca Antpitta,0.1908,18.0,21.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,19.08
+Grallaria rufula,Muisca Antpitta,0.182,15.0,18.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,18.2
+Crypturellus variegatus,Variegated Tinamou,0.1785,0.0,3.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,,,,17.85
+Crypturellus strigulosus,Brazilian Tinamou,0.1774,0.0,3.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,,,,17.74
+Grallaria rufula,Muisca Antpitta,0.1559,0.0,3.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,15.59
+Tyrannus tyrannus,Eastern Kingbird,0.1433,0.0,3.0,45.815,15.9819,XC1145792 - Buff-vented Bulbul - Iole crypta.mp3,,,,14.33
+Grallaria rufula,Muisca Antpitta,0.1306,3.0,6.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,13.06
+Arborophila rufogularis,Rufous-throated Partridge,0.1145,0.0,3.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,Phasianidae,Galliformes,Animalia,11.45
+Coccothraustes coccothraustes,Hawfinch,0.11,0.0,3.0,45.815,15.9819,XC1145786 - Hawfinch - Coccothraustes coccothraustes japonicus.mp3,,,,11.0
+Tinamus major,Great Tinamou,0.1071,0.0,3.0,45.815,15.9819,XC1145896 - Great Tinamou - Tinamus major.wav,,,,10.71
+Henicorhina anachoreta,Hermit Wood-Wren,0.101,12.0,15.0,45.815,15.9819,XC1145774 - Sierra Nevada Antpitta - Grallaria spatiator.mp3,,,,10.1
