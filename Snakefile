@@ -1,9 +1,8 @@
 configfile: "config.yaml"
 
-SPECIES_FILTER = config.get("species_filter", "")
-
 import sys
-PY = "python3" if sys.platform != "win32" else "py"
+
+SPECIES_FILTER = config.get("species_filter", "")
 
 rule all:
     input:
@@ -38,6 +37,7 @@ rule generate_report:
         "output/report.csv",
         "output/report_summary.csv"
     params:
-        species_filter = SPECIES_FILTER
+        species_filter = SPECIES_FILTER,
+        python = sys.executable
     shell:
-        f"{PY} scripts/generate_report.py {{params.species_filter}}"
+        "{params.python} scripts/generate_report.py {params.species_filter}"
