@@ -1,0 +1,77 @@
+name: BirdAnalyzer Pipeline CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout koda
+        uses: actions/checkout@v4
+
+      - name: Pokretanje Docker servisa (MongoDB, MinIO, Kafka)
+        run: docker compose up -d
+
+      - name: Postavljanje Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalacija Python ovisnosti
+        run: pip install -r requirements.txt
+
+      - name: Čekanje da servisi budu spremni
+        run: |
+          echo "Čekam MongoDB..."
+          timeout 60 bash -c 'until docker exec pppk_mongo mongosh --eval "db.runCommand({ping:1})" > /dev/null 2>&1; do sleep 3; done'
+          echo "MongoDB spreman."
+
+          echo "Čekam MinIO..."
+          timeout 60 bash -c 'until curl -sf http://localhost:9001/minio/health/live; do sleep 3; done'
+          echo "MinIO spreman."
+
+          echo "Čekam Kafka (30s)..."
+          sleep 30
+          echo "Kafka spreman."
+
+      - name: Kreiranje test audio datoteke
+        run: |
+          mkdir -p audio output
+          python - <<'EOF'
+          import wave, struct, math
+          # Generira 3 sekunde sinusnog tona (440 Hz) kao WAV
+          with wave.open("audio/test_bird.wav", "w") as f:
+              f.setnchannels(1)
+              f.setsampwidth(2)
+              f.setframerate(44100)
+              frames = [
+                  struct.pack("<h", int(32767 * math.sin(2 * math.pi * 440 * i / 44100)))
+                  for i in range(44100 * 3)
+              ]
+              f.writeframes(b"".join(frames))
+          print("Test audio kreiran: audio/test_bird.wav")
+          EOF
+
+      - name: Pokretanje Snakemake pipeline-a
+        run: snakemake --cores 1
+
+      - name: Prikaz rezultata
+        if: always()
+        run: |
+          echo "=== report.csv ==="
+          cat output/report.csv 2>/dev/null || echo "(prazan — nema klasifikacija)"
+          echo ""
+          echo "=== report_summary.csv ==="
+          cat output/report_summary.csv 2>/dev/null || echo "(prazan)"
+
+      - name: Upload CSV izvještaja kao artefakt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bird-reports
+          path: output/*.csv
+          if-no-files-found: ignore
